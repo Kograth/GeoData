@@ -13,22 +13,22 @@ public class SavingDataToDatabase implements Processor {
 
         Character Tabs = 0x09;
 
-        Message In = exchange.getIn();
 
-        String Str = (String) In.getBody();
+        String Str =    exchange.getIn().getBody(String.class);
 
         String[] ArrayParametr          = Str.split(String.valueOf(Tabs));
 
+
         Message Out = exchange.getOut();
 
-        Out.setHeader("RegData",ArrayParametr[1]);
-        Out.setHeader("lon",ArrayParametr[2]);
-        Out.setHeader("lat",ArrayParametr[3]);
-        Out.setHeader("UIDTask",ArrayParametr[4]);
-        Out.setHeader("UIDTaskType",ArrayParametr[5]);
-        Out.setHeader("StateTask",ArrayParametr[6]);
-        Out.setHeader("Geography",ArrayParametr[7]);
-        Out.setHeader("Device2",ArrayParametr[8]);
+        Out.setHeader("RegData",ArrayParametr[0]);
+        Out.setHeader("lon",ArrayParametr[1]);
+        Out.setHeader("lat",ArrayParametr[2]);
+        Out.setHeader("UIDTask",ArrayParametr[3]);
+        Out.setHeader("UIDTaskType",ArrayParametr[4]);
+        Out.setHeader("StateTask",ArrayParametr[5]);
+        Out.setHeader("Geography",ArrayParametr[6]);
+        Out.setHeader("Device2",ArrayParametr[7]);
 
 
     }
