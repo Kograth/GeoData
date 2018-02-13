@@ -1,8 +1,10 @@
 package ru.cse;
 
 import org.apache.camel.Exchange;
+
 import org.apache.camel.Message;
 import org.apache.camel.Processor;
+import org.apache.camel.TypeConverter;
 
 
 public class SavingDataToDatabase implements Processor {
@@ -14,7 +16,9 @@ public class SavingDataToDatabase implements Processor {
         Character Tabs = 0x09;
 
 
-        String Str =    exchange.getIn().getBody(String.class);
+        Message In = exchange.getIn();
+
+        String Str = In.getBody(String.class);
 
         String[] ArrayParametr          = Str.split(String.valueOf(Tabs));
 
