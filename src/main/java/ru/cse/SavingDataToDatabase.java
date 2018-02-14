@@ -1,7 +1,6 @@
 package ru.cse;
 
 import org.apache.camel.Exchange;
-
 import org.apache.camel.Message;
 import org.apache.camel.Processor;
 import org.apache.camel.TypeConverter;
@@ -15,6 +14,8 @@ public class SavingDataToDatabase implements Processor {
 
         Character Tabs = 0x09;
 
+
+        String TypeCon = exchange.getContext().getTypeConverter().convertTo(String.class,exchange.getIn().getBody());
 
         Message In = exchange.getIn();
 
