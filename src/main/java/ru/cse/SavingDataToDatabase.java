@@ -3,10 +3,10 @@ package ru.cse;
 import org.apache.camel.Exchange;
 import org.apache.camel.Message;
 import org.apache.camel.Processor;
-import org.apache.camel.TypeConverter;
 
 
 public class SavingDataToDatabase implements Processor {
+
 
 
     @Override
@@ -14,26 +14,51 @@ public class SavingDataToDatabase implements Processor {
 
         Character Tabs = 0x09;
 
-
-        String TypeCon = exchange.getContext().getTypeConverter().convertTo(String.class,exchange.getIn().getBody());
-
         Message In = exchange.getIn();
 
         String Str = In.getBody(String.class);
+        String UIDTask,UIDTaskType,StateTask,Geography;
 
         String[] ArrayParametr          = Str.split(String.valueOf(Tabs));
 
+        int LenghtMass = ArrayParametr.length;
 
         Message Out = exchange.getOut();
 
-        Out.setHeader("RegData",ArrayParametr[0]);
-        Out.setHeader("lon",ArrayParametr[1]);
-        Out.setHeader("lat",ArrayParametr[2]);
-        Out.setHeader("UIDTask",ArrayParametr[3]);
-        Out.setHeader("UIDTaskType",ArrayParametr[4]);
-        Out.setHeader("StateTask",ArrayParametr[5]);
-        Out.setHeader("Geography",ArrayParametr[6]);
-        Out.setHeader("Device2",ArrayParametr[7]);
+
+        if (LenghtMass==8) {
+
+            UIDTask     = ArrayParametr[3];
+            UIDTaskType = ArrayParametr[4];
+            StateTask   = ArrayParametr[5];
+            Geography   = ArrayParametr[6];
+
+            if (UIDTask.length()==0) {
+                UIDTask = null;
+            };
+            if (UIDTaskType.length()==0) {
+                UIDTaskType = null;
+            };
+            if (StateTask.length()==0) {
+                StateTask = null;
+            };
+            if (Geography.length()==0) {
+                Geography = null;
+            };
+
+            Out.setHeader("RegData",ArrayParametr[0]);
+            Out.setHeader("lon",ArrayParametr[1]);
+            Out.setHeader("lat",ArrayParametr[2]);
+            Out.setHeader("UIDTask",UIDTask);
+            Out.setHeader("UIDTaskType",UIDTaskType);
+            Out.setHeader("StateTask",StateTask);
+            Out.setHeader("Geography",Geography);
+            Out.setHeader("Device2",ArrayParametr[7]);
+        }
+        else {
+            Out.setHeader("No data","0");
+            Out.setHeader("lenghtM",LenghtMass);
+        }
 
 
     }
