@@ -8,9 +8,11 @@ import org.apache.camel.Processor;
 public class SavingDataToDatabase implements Processor {
 
 
+    private String IdDevice,Longitude,Latitude;
 
     @Override
     public void process(Exchange exchange) throws Exception {
+
 
         Character Tabs = 0x09;
 
@@ -28,10 +30,13 @@ public class SavingDataToDatabase implements Processor {
 
         if (LenghtMass==8) {
 
+            Longitude   = ArrayParametr[1];
+            Latitude    = ArrayParametr[2];
             UIDTask     = ArrayParametr[3];
             UIDTaskType = ArrayParametr[4];
             StateTask   = ArrayParametr[5];
             Geography   = ArrayParametr[6];
+            IdDevice    = ArrayParametr[7];
 
             if (UIDTask.length()==0) {
                 UIDTask = null;
@@ -47,13 +52,13 @@ public class SavingDataToDatabase implements Processor {
             };
 
             Out.setHeader("RegData",ArrayParametr[0]);
-            Out.setHeader("lon",ArrayParametr[1]);
-            Out.setHeader("lat",ArrayParametr[2]);
+            Out.setHeader("lon",Longitude);
+            Out.setHeader("lat",Latitude);
             Out.setHeader("UIDTask",UIDTask);
             Out.setHeader("UIDTaskType",UIDTaskType);
             Out.setHeader("StateTask",StateTask);
             Out.setHeader("Geography",Geography);
-            Out.setHeader("Device2",ArrayParametr[7]);
+            Out.setHeader("Device2",IdDevice);
         }
         else {
             Out.setHeader("No data","0");
@@ -63,4 +68,10 @@ public class SavingDataToDatabase implements Processor {
 
     }
 
+
+    @Override
+    public String toString() {
+        String NewString = " Device->"+IdDevice+" Longitude->"+Longitude+" Latitude->"+Latitude;
+        return super.toString()+NewString;
+    }
 }
