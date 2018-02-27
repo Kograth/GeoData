@@ -1,5 +1,6 @@
 package ru.cse;
 
+import communication.ResponseToDevices;
 import org.apache.camel.builder.RouteBuilder;
 
 public class ExchangeBetweenDevices extends RouteBuilder{
@@ -20,5 +21,11 @@ public class ExchangeBetweenDevices extends RouteBuilder{
                 .to("sql:insert into Geodata values (:#RegData,:#lon,:#lat,CONVERT(BINARY(16),:#UIDTask),:#UIDTaskType,:#StateTask,:#Geography,:#Device2)")
                 .to("log:Delivery to SQL");
 
+        from("timer://foo?fixedRate=true;period=10000")
+                .process(new ResponseToDevices())
+                .to("activemq:topic:VirtualTopic.Orders").to("log:Read msg from 1C");
+
+        from("activemq:Consumer.A.VirtualTopic.Orders").to("activemq:queue:AnswerMe");
     }
+
 }
