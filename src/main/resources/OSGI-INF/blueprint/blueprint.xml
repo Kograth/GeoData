@@ -32,6 +32,35 @@
 
     </camelContext>
 
+    <!--<bean id="amqp" class="org.apache.camel.component.amqp.AMQPComponent">-->
+        <!--<property name="connectionFactory">-->
+            <!--<bean class="org.apache.qpid.jms.JmsConnectionFactory">-->
+                <!--<property name="remoteURI" value="amqp://localhost:5673" />-->
+                <!--<property name="username" value="smx"/>-->
+                <!--<property name="password" value="smx"/>-->
+            <!--</bean>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <bean id="jmsConnectionFactory" class="org.apache.qpid.jms.JmsConnectionFactory">
+        <property name="remoteURI" value="amqp://localhost:5673" />
+        <property name="username" value="smx"/>
+        <property name="password" value="smx"/>
+    </bean>
+
+
+    <bean id="jmsCachingConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <property name="targetConnectionFactory" ref="jmsConnectionFactory" />
+    </bean>
+
+    <bean id="jmsConfig" class="org.apache.camel.component.jms.JmsConfiguration" >
+        <property name="connectionFactory" ref="jmsCachingConnectionFactory" />
+        <property name="cacheLevelName" value="CACHE_CONSUMER" />
+    </bean>
+
+    <bean id="amqp" class="org.apache.camel.component.amqp.AMQPComponent">
+        <property name="configuration" ref="jmsConfig" />
+    </bean>
 
     <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
         <property name="connectionFactory">

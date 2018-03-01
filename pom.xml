@@ -97,6 +97,12 @@
             <artifactId>org.osgi.core</artifactId>
             <version>4.3.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-amqp</artifactId>
+            <version>${camel.version}</version> <!-- use the same version as your Camel core version -->
+        </dependency>
         <!--<dependency>-->
             <!--<groupId>org.apache.camel</groupId>-->
             <!--<artifactId>camel-soap</artifactId>-->

@@ -3,7 +3,6 @@ package ru.cse;
 import communication.ResponseToDevices;
 import org.apache.camel.Header;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.builder.ValueBuilder;
 
 public class ExchangeBetweenDevices extends RouteBuilder{
     @Override
@@ -17,6 +16,7 @@ public class ExchangeBetweenDevices extends RouteBuilder{
 
 
 
+
         from("activemq:topic:GeoDataV2").process(new SavingDataToDatabase())
                 .choice()
                 .when(header("No data").isEqualTo("0")).to("log:No data to write DataBase. Lenght -- :#lenghtM").otherwise()
@@ -24,7 +24,7 @@ public class ExchangeBetweenDevices extends RouteBuilder{
                 .to("log:Delivery to SQL");
 
 
-        from("activemq:queue:Devices.MessageFrom1C")
+        from("amqp:queue:Devices.MessageFrom1C")
                 .process(new ResponseToDevices())
                 .toD("activemq:topic:${header.IDDevice}").to("log:Read msg from 1C");
 

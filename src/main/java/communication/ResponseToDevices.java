@@ -11,7 +11,9 @@ public class ResponseToDevices implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
 
-        String NS = new String(exchange.getIn().getBody(String.class));
+       Message in = exchange.getIn();
+
+
         Message out = exchange.getOut();
         out.setHeader("IDDevice","ID1-001-001-001-001");
         out.setBody("Something haping in here...");
