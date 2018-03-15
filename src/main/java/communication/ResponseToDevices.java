@@ -11,12 +11,13 @@ public class ResponseToDevices implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
 
-       Message in = exchange.getIn();
-
+        Message in = exchange.getIn();
+        String idTablet       = in.getHeader("idTablet",String.class);
+        String checkSum       = in.getHeader("CheckSum",String.class);
 
         Message out = exchange.getOut();
-        out.setHeader("IDDevice","ID1-001-001-001-001");
-        out.setBody("Something haping in here...");
+        out.setHeader("IDDevice",idTablet);
+        out.setBody(in.getBody());
 
     }
 }
