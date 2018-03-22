@@ -12,12 +12,15 @@ public class ResponseToDevices implements Processor {
     public void process(Exchange exchange) throws Exception {
 
         Message in = exchange.getIn();
-        String idTablet       = in.getHeader("idTablet",String.class);
-        String checkSum       = in.getHeader("CheckSum",String.class);
-
+        //new String idTablet;
+//        idTablet = in.getHeader("idTablet");
+//        new String checkSum       = in.getHeader("CheckSum");
+        byte[] STR = (byte[]) in.getBody();
+        String FinishData = new String(STR);
         Message out = exchange.getOut();
-        out.setHeader("IDDevice",idTablet);
-        out.setBody(in.getBody());
+        out.setHeader("IDDevice",in.getHeader("idTablet"));
+        out.setHeader("CheckSum",in.getHeader("CheckSum"));
+        out.setBody(FinishData);
 
     }
 }
