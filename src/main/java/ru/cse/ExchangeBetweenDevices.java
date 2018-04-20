@@ -9,10 +9,10 @@ public class ExchangeBetweenDevices extends RouteBuilder{
     public void configure() throws Exception {
 
 ////      ДЛЯ ТЕСТИРОВАНИЯ SQL БАЗЫ
-//       from("timer:foo?period=10s")
-//                .setBody(simple("2018-02-01 13:04:00\\t45.2\\t23.2\\t456\\t1\\tgo\\tRussia\\tMotorolaZX8"))
-//                .to("mqtt:cheese?publishTopicName=GeoDataV2&userName=smx&password=smx")
-//                .to("log:Data accepted");
+////       from("timer:foo?period=10s")
+////                .setBody(simple("2018-02-01 13:04:00\\t45.2\\t23.2\\t456\\t1\\tgo\\tRussia\\tMotorolaZX8"))
+////                .to("mqtt:cheese?publishTopicName=GeoDataV2&userName=smx&password=smx")
+////               .to("log:Data accepted");
 
 
 
@@ -28,6 +28,7 @@ public class ExchangeBetweenDevices extends RouteBuilder{
                 .process(new ResponseToDevices())
                 .toD("activemq:topic:${header.IDDevice}").to("log:Read msg from 1C");
 
+        from("activemq:topic:Devices.MessageFromTablet.OpenCloseShift ").process(new CreateOpenCloseShift()).to("log:GetInfoAboutShift");
 
     }
 

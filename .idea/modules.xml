@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GeoDataTablet.iml" filepath="$PROJECT_DIR$/GeoDataTablet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ExchangeBetweenDevices.iml" filepath="$PROJECT_DIR$/ExchangeBetweenDevices.iml" />
     </modules>
   </component>
 </project>

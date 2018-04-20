@@ -20,6 +20,7 @@ public class ResponseToDevices implements Processor {
         Message out = exchange.getOut();
         out.setHeader("IDDevice",in.getHeader("idTablet"));
         out.setHeader("CheckSum",in.getHeader("CheckSum"));
+
         out.setBody(FinishData);
 
     }
