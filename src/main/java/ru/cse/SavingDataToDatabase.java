@@ -37,8 +37,8 @@ public class SavingDataToDatabase implements Processor {
             StateTask   = ArrayParametr[5];
             Geography   = "Russia";//ArrayParametr[6];
             IdDevice    = ArrayParametr[7];
-            IdServer    = ArrayParametr[8];
-            IdWebService= ArrayParametr[9];
+            //IdServer    = ArrayParametr[8];
+            //IdWebService= ArrayParametr[9];
 
             if (UIDTask.length()==0) {
                 UIDTask = null;
