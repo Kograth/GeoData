@@ -8,7 +8,7 @@ import org.apache.camel.Processor;
 public class SavingDataToDatabase implements Processor {
 
 
-    private String IdDevice,Longitude,Latitude,IdServer,IdWebService;
+    private String IdDevice,Longitude,Latitude,DataReg,IdServer,IdWebService;
 
     @Override
     public void process(Exchange exchange) throws Exception {
@@ -28,14 +28,15 @@ public class SavingDataToDatabase implements Processor {
         Message Out = exchange.getOut();
 
 
-        if (LenghtMass==10) {
+        if (LenghtMass==8) {
 
+            DataReg     = ArrayParametr[0];
             Longitude   = ArrayParametr[1];
             Latitude    = ArrayParametr[2];
             UIDTask     = ArrayParametr[3];
             UIDTaskType = ArrayParametr[4];
             StateTask   = ArrayParametr[5];
-            Geography   = "Russia";//ArrayParametr[6];
+            Geography   = ArrayParametr[6];
             IdDevice    = ArrayParametr[7];
             //IdServer    = ArrayParametr[8];
             //IdWebService= ArrayParametr[9];
@@ -53,7 +54,7 @@ public class SavingDataToDatabase implements Processor {
                 Geography = null;
             };
 
-            Out.setHeader("RegData",ArrayParametr[0]);
+            Out.setHeader("RegData",DataReg);
             Out.setHeader("lon",Longitude);
             Out.setHeader("lat",Latitude);
             Out.setHeader("UIDTask",UIDTask);

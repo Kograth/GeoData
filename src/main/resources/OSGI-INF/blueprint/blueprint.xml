@@ -43,9 +43,9 @@
     <!--</bean>-->
 
     <bean id="jmsConnectionFactory" class="org.apache.qpid.jms.JmsConnectionFactory">
-        <property name="remoteURI" value="amqp://localhost:5673" />
-        <property name="username" value="smx"/>
-        <property name="password" value="smx"/>
+        <property name="remoteURI" value="amqp://localhost:5674" />
+        <property name="username" value="karaf"/>
+        <property name="password" value="karaf"/>
     </bean>
 
 
@@ -65,9 +65,9 @@
     <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
         <property name="connectionFactory">
             <bean class="org.apache.activemq.ActiveMQConnectionFactory">
-                <property name="brokerURL" value="vm://localhost:61617?broker.persistent=false"/>
-                <property name="userName" value="smx" />
-                <property name="password" value="smx" />
+                <property name="brokerURL" value="vm://localhost:61699?broker.persistent=false"/>
+                <property name="userName" value="karaf" />
+                <property name="password" value="karaf" />
             </bean>
         </property>
     </bean>
