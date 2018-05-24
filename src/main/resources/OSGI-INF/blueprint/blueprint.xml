@@ -14,7 +14,7 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver"/>
-        <property name="url" value="jdbc:jtds:sqlserver://ts8:1433;databaseName=Geodata_courier"/>
+        <property name="url" value="jdbc:jtds:sqlserver://te1:1433;databaseName=Geodata_courier"/>
         <property name="username" value="smx" />
         <property name="password" value="LCVry94S" />
     </bean>
@@ -43,7 +43,7 @@
     <!--</bean>-->
 
     <bean id="jmsConnectionFactory" class="org.apache.qpid.jms.JmsConnectionFactory">
-        <property name="remoteURI" value="amqp://localhost:5674" />
+        <property name="remoteURI" value="amqp://localhost:5673" />
         <property name="username" value="karaf"/>
         <property name="password" value="karaf"/>
     </bean>
@@ -65,7 +65,7 @@
     <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
         <property name="connectionFactory">
             <bean class="org.apache.activemq.ActiveMQConnectionFactory">
-                <property name="brokerURL" value="vm://localhost:61699?broker.persistent=false"/>
+                <property name="brokerURL" value="vm://localhost:61617?broker.persistent=false"/>
                 <property name="userName" value="karaf" />
                 <property name="password" value="karaf" />
             </bean>
