@@ -19,7 +19,7 @@ public class ExchangeBetweenDevices extends RouteBuilder{
         from("activemq:topic:GeoDataV2").process(new SavingDataToDatabase())
                 .choice()
                 .when(header("No data").isEqualTo("0")).to("log:No data to write DataBase. Lenght -- :#lenghtM").otherwise()
-                .to("sql:insert into dbo.GeoData values (:#RegData,:#lon,:#lat,CONVERT(BINARY(16),:#UIDTask,:#UIDTaskType,:#StateTask,:#Geography,:#Device2)")
+                .to("sql:insert into dbo.GeoData values (:#RegData,:#lon,:#lat,CONVERT(BINARY(16),:#UIDTask),:#UIDTaskType,:#StateTask,:#Geography,:#Device2)")
                 .to("log:Delivery to SQL");
 
 
