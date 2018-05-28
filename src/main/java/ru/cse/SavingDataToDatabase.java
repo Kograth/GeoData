@@ -1,5 +1,6 @@
 package ru.cse;
 
+import static javax.xml.bind.DatatypeConverter.parseHexBinary;
 import org.apache.camel.Exchange;
 import org.apache.camel.Message;
 import org.apache.camel.Processor;
@@ -19,7 +20,8 @@ public class SavingDataToDatabase implements Processor {
         Message In = exchange.getIn();
 
         String Str = In.getBody(String.class);
-        String UIDTask,UIDTaskType,StateTask,Geography;
+        String UIDTaskType,StateTask,Geography;
+        byte[] UIDTask;
 
         String[] ArrayParametr          = Str.split(String.valueOf(Tabs));
 
@@ -41,9 +43,9 @@ public class SavingDataToDatabase implements Processor {
             //IdServer    = ArrayParametr[8];
             //IdWebService= ArrayParametr[9];
 
-            if (UIDTask.length()==0) {
-                UIDTask = null;
-            };
+            /*            if (UIDTask.length()==0) {
+            UIDTask = null;
+            };*/
             if (UIDTaskType.length()==0) {
                 UIDTaskType = null;
             };
@@ -73,11 +75,11 @@ public class SavingDataToDatabase implements Processor {
 
     }
 
-    private String ConvertGuid(String froGuid) {
-        String ret ="";
+    private byte[] ConvertGuid(String froGuid) {
+        byte[] ret = null;
         String[] parts = froGuid.split("-");
         if (parts.length>4) {
-             ret = "0x"+parts[3]+parts[4]+parts[2]+parts[1]+parts[0];
+             ret = parseHexBinary(parts[3]+parts[4]+parts[2]+parts[1]+parts[0]);
         }
         return ret;
     }
