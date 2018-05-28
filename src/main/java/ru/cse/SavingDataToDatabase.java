@@ -33,7 +33,7 @@ public class SavingDataToDatabase implements Processor {
             DataReg     = ArrayParametr[0];
             Longitude   = ArrayParametr[1];
             Latitude    = ArrayParametr[2];
-            UIDTask     = ArrayParametr[3];
+            UIDTask     = ConvertGuid(ArrayParametr[3]);
             UIDTaskType = ArrayParametr[4];
             StateTask   = ArrayParametr[5];
             Geography   = ArrayParametr[6];
@@ -73,7 +73,15 @@ public class SavingDataToDatabase implements Processor {
 
     }
 
-
+    private String ConvertGuid(String froGuid) {
+        String ret ="";
+        String[] parts = froGuid.split("-");
+        if (parts.length>4) {
+             ret = "0x"+parts[3]+parts[4]+parts[2]+parts[1]+parts[0];
+        }
+        return ret;
+    }
+            
     @Override
     public String toString() {
         String NewString = " Device->"+IdDevice+" Longitude->"+Longitude+" Latitude->"+Latitude;
