@@ -16,7 +16,7 @@ public class ResponseToDevices implements Processor {
         byte[] MessageDataByte = (byte[]) in.getBody();
 
         String XMLData = new String (MessageDataByte);
-        String CheckSum     = String.valueOf(in.getHeader("CheckSum"));
+        String CheckSum = String.valueOf(in.getHeader("CheckSum"));
         String FinalData = CheckSum+"<!>"+XMLData;
 
 

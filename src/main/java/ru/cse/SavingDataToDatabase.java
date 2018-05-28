@@ -28,7 +28,7 @@ public class SavingDataToDatabase implements Processor {
         Message Out = exchange.getOut();
 
 
-        if (LenghtMass==8) {
+        if (LenghtMass==10) {
 
             DataReg     = ArrayParametr[0];
             Longitude   = ArrayParametr[1];
