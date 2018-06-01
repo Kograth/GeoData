@@ -30,7 +30,11 @@ public class ExchangeBetweenDevices extends RouteBuilder{
 
         from("activemq:topic:Devices.MessageFromTablet.OpenCloseShift").process(new CreateOpenCloseShift()).to("log:GetInfoAboutShift.");
 
-        from("activemq:topic:AnswerPackageFromTablet").to("amqp:queue:Devices.MessageTo1C").to("log:Get message from tablet.");
+        from("activemq:topic:AnswerPackageFromTablet")
+                .process(new SavingDataTo1C())
+                .streamCaching()
+                .to("cxf:bean:UploadDataTo1C")
+                .to("log:Upload msg from tablet.");
 
     }
 
