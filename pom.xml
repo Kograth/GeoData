@@ -13,7 +13,7 @@
 
 
     <properties>
-        <camel.version>2.21.1</camel.version>
+        <camel.version>2.19.5</camel.version>
         <!--<activemq.version>5.14.5</activemq.version>-->
         <!--<cxf-rt-frontend-jaxws.version>3.1.6</cxf-rt-frontend-jaxws.version>-->
         <camel.osgi.export.pkg>org.apache.camel.example.sql.*</camel.osgi.export.pkg>
@@ -68,7 +68,7 @@
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-camel</artifactId>
-            <version>5.15.4</version>
+            <version>5.14.5</version>
         </dependency>
 
         <!--<dependency>-->
@@ -92,11 +92,11 @@
             <!--<artifactId>cxf-rt-frontend-jaxws</artifactId>-->
             <!--<version>${cxf-rt-frontend-jaxws.version}</version>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-            <version>6.0.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.osgi</groupId>-->
+            <!--<artifactId>org.osgi.core</artifactId>-->
+            <!--<version>5.0.0</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.apache.camel</groupId>

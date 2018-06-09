@@ -15,11 +15,12 @@ public class SavingDataTo1C implements Processor {
         UploadTo1CFromDevices ws1c = new UploadTo1CFromDevices();
         ws1c.setParameter("Fuck off we're close for dinner.");
         ws1c.setCheckSum("560000");
+
         Message Out = exchange.getOut();
 
         Out.setBody(ws1c);
         Out.setHeader( CxfConstants.OPERATION_NAME, "UploadTo1CFromDevices");
-        Out.setHeader(CxfConstants.OPERATION_NAMESPACE, "http://www.rs1.cse.ru");
+        Out.setHeader(CxfConstants.OPERATION_NAMESPACE, "http://www.rs1.cse.ru/");
 
     }
 }

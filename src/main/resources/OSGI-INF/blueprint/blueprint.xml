@@ -81,8 +81,8 @@
                           loggingFeatureEnabled="true">
         <camelcxf:properties>
             <entry key="dataFormat" value="PAYLOAD"/>
-            <!--<entry key="username" value="Web"/>-->
-            <!--<entry key="password" value="Web"/>-->
+            <entry key="username" value="Web"/>
+            <entry key="password" value="Web"/>
         </camelcxf:properties>
 
     </camelcxf:cxfEndpoint>
