@@ -9,7 +9,7 @@ import org.apache.camel.Processor;
 public class SavingDataToDatabase implements Processor {
 
 
-    private String IdDevice,Longitude,Latitude,DataReg,IdServer,IdWebService;
+    private String UIDTaskNumber, IdDevice,Longitude,Latitude,DataReg,IdServer,IdWebService;
 
     @Override
     public void process(Exchange exchange) throws Exception {
@@ -30,22 +30,18 @@ public class SavingDataToDatabase implements Processor {
         Message Out = exchange.getOut();
 
 
-        if (LenghtMass>=8) {
+        if (LenghtMass==9) {
 
             DataReg     = ArrayParametr[0];
             Longitude   = ArrayParametr[1];
             Latitude    = ArrayParametr[2];
             UIDTask     = ConvertGuid(ArrayParametr[3]);
-            UIDTaskType = ArrayParametr[4];
-            StateTask   = ArrayParametr[5];
-            Geography   = ArrayParametr[6];
-            IdDevice    = ArrayParametr[7];
-            //IdServer    = ArrayParametr[8];
-            //IdWebService= ArrayParametr[9];
+            UIDTaskNumber = ArrayParametr[4];
+            UIDTaskType = ArrayParametr[5];
+            StateTask   = ArrayParametr[6];
+            Geography   = ArrayParametr[7];
+            IdDevice    = ArrayParametr[8];
 
-            /*            if (UIDTask.length()==0) {
-            UIDTask = null;
-            };*/
             if (UIDTaskType.length()==0) {
                 UIDTaskType = null;
             };
@@ -61,6 +57,7 @@ public class SavingDataToDatabase implements Processor {
             Out.setHeader("lat",Latitude);
             Out.setHeader("UIDTask",UIDTask);
             Out.setHeader("UIDTaskType",UIDTaskType);
+            Out.setHeader("UIDTaskNumber",UIDTaskNumber);
             Out.setHeader("StateTask",StateTask);
             Out.setHeader("Geography",Geography);
             Out.setHeader("Device2",IdDevice);
@@ -68,8 +65,38 @@ public class SavingDataToDatabase implements Processor {
             Out.setHeader("ParamIdWebService",IdWebService);
         }
         else {
-            Out.setHeader("No data","0");
-            Out.setHeader("lenghtM",LenghtMass);
+
+            DataReg     = ArrayParametr[0];
+            Longitude   = ArrayParametr[1];
+            Latitude    = ArrayParametr[2];
+            UIDTask     = ConvertGuid(ArrayParametr[3]);
+
+            UIDTaskType = ArrayParametr[4];
+            StateTask   = ArrayParametr[5];
+            Geography   = ArrayParametr[6];
+            IdDevice    = ArrayParametr[7];
+
+            if (UIDTaskType.length()==0) {
+                UIDTaskType = null;
+            };
+            if (StateTask.length()==0) {
+                StateTask = null;
+            };
+            if (Geography.length()==0) {
+                Geography = null;
+            };
+
+            Out.setHeader("RegData",DataReg);
+            Out.setHeader("lon",Longitude);
+            Out.setHeader("lat",Latitude);
+            Out.setHeader("UIDTask",UIDTask);
+            Out.setHeader("UIDTaskType",UIDTaskType);
+            Out.setHeader("UIDTaskNumber",UIDTaskNumber);
+            Out.setHeader("StateTask",StateTask);
+            Out.setHeader("Geography",Geography);
+            Out.setHeader("Device2",IdDevice);
+            Out.setHeader("ParamIdServer",IdServer);
+            Out.setHeader("ParamIdWebService",IdWebService);
         }
 
 

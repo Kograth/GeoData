@@ -11,10 +11,10 @@
              http://cxf.apache.org/blueprint/jaxws http://cxf.apache.org/schemas/blueprint/jaxws.xsd
              http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd">
 
-
+<!--te1 ДЛЯ РАБОЧЕГО ts8 ДЛЯ ТЕСТОВОГО-->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver"/>
-        <property name="url" value="jdbc:jtds:sqlserver://ts8:1433;databaseName=Geodata_courier"/>
+        <property name="url" value="jdbc:jtds:sqlserver://te1:1433;databaseName=Geodata_courier"/>
         <property name="username" value="smx" />
         <property name="password" value="LCVry94S" />
     </bean>
@@ -65,26 +65,26 @@
     <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
         <property name="connectionFactory">
             <bean class="org.apache.activemq.ActiveMQConnectionFactory">
-                <property name="brokerURL" value="vm://localhost:61699?broker.persistent=false"/>
+                <property name="brokerURL" value="vm://amq-broker-test:61699?broker.persistent=true"/>
                 <property name="userName" value="karaf" />
                 <property name="password" value="karaf" />
             </bean>
         </property>
     </bean>
 
-    <camelcxf:cxfEndpoint id="UploadDataTo1C"
-                          serviceClass="ru.cse.APILk.Service1c.WebMobilePortType"
-                          address="http://web.cse.ru/cse82_AlexSt/ws/WebMobile"
-                          serviceName="ws:WebMobile"
-                          endpointName="ws:WebMobileSoap12"
-                          xmlns:ws="http://www.rs1.cse.ru"
-                          loggingFeatureEnabled="true">
-        <camelcxf:properties>
-            <entry key="dataFormat" value="PAYLOAD"/>
-            <entry key="username" value="Web"/>
-            <entry key="password" value="Web"/>
-        </camelcxf:properties>
+    <!--<camelcxf:cxfEndpoint id="UploadDataTo1C"-->
+                          <!--serviceClass="ru.cse.APILk.Service1c.WebMobilePortType"-->
+                          <!--address="http://sp1/cse82_reg/ws/WebMobile"-->
+                          <!--serviceName="ws:WebMobile"-->
+                          <!--endpointName="ws:WebMobileSoap12"-->
+                          <!--xmlns:ws="http://www.rs1.cse.ru"-->
+                          <!--loggingFeatureEnabled="true">-->
+        <!--<camelcxf:properties>-->
+            <!--<entry key="dataFormat" value="PAYLOAD"/>-->
+            <!--<entry key="username" value="Web"/>-->
+            <!--<entry key="password" value="Web"/>-->
+        <!--</camelcxf:properties>-->
 
-    </camelcxf:cxfEndpoint>
+    <!--</camelcxf:cxfEndpoint>-->
 
 </blueprint>

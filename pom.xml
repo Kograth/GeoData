@@ -184,37 +184,37 @@
                         <version>2.8.1</version>
                     </dependency>
                 </dependencies>
-                <executions>
-                    <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>generate-sources</id>-->
+                        <!--<phase>generate-sources</phase>-->
 
-                        <configuration>
-                            <!--<sourceRoot>${project.build.directory}/generated/src/main/java</sourceRoot>-->
-                            <sourceRoot>${basedir}/src/main/java</sourceRoot>
-                            <defaultOptions>
-                                <autoNameResolution>true</autoNameResolution>
-                            </defaultOptions>
-                            <wsdlOptions>
-                                <wsdlOption>
+                        <!--<configuration>-->
+                            <!--&lt;!&ndash;<sourceRoot>${project.build.directory}/generated/src/main/java</sourceRoot>&ndash;&gt;-->
+                            <!--<sourceRoot>${basedir}/src/main/java</sourceRoot>-->
+                            <!--<defaultOptions>-->
+                                <!--<autoNameResolution>true</autoNameResolution>-->
+                            <!--</defaultOptions>-->
+                            <!--<wsdlOptions>-->
+                                <!--<wsdlOption>-->
 
-                                    <wsdl>http://web.cse.ru/cse82_AlexSt/ws/WebMobile?wsdl</wsdl>
+                                    <!--<wsdl>http://sp1/cse82_reg/ws/WebMobile?wsdl</wsdl>-->
 
-                                    <extraargs>
-                                        <extraarg>-impl</extraarg>
-                                        <extraarg>-p</extraarg>
-                                        <extraarg>ru.cse.APILk.Service1c</extraarg>
-                                    </extraargs>
-                                </wsdlOption>
-                            </wsdlOptions>
+                                    <!--<extraargs>-->
+                                        <!--<extraarg>-impl</extraarg>-->
+                                        <!--<extraarg>-p</extraarg>-->
+                                        <!--<extraarg>ru.cse.APILk.Service1c</extraarg>-->
+                                    <!--</extraargs>-->
+                                <!--</wsdlOption>-->
+                            <!--</wsdlOptions>-->
 
-                        </configuration>
-                        <goals>
-                            <goal>wsdl2java</goal>
-                        </goals>
-                    </execution>
+                        <!--</configuration>-->
+                        <!--<goals>-->
+                            <!--<goal>wsdl2java</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
 
-                </executions>
+                <!--</executions>-->
             </plugin>
         </plugins>
     </build>
