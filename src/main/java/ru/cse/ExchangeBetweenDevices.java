@@ -16,7 +16,7 @@ public class ExchangeBetweenDevices extends RouteBuilder{
 
 
 
-        from("activemq:topic:VirtualTopic:GeoDataV2").process(new SavingDataToDatabase())
+        from("activemq:topic:GeoDataV2").process(new SavingDataToDatabase())
                 .choice()
                 .when(header("No data").isEqualTo("0")).to("log:No data to write DataBase. Lenght -- :#lenghtM").otherwise()
                 .to("sql:insert into dbo.GeoData values (:#RegData,:#lon,:#lat,CONVERT(BINARY(16),:#UIDTask),:#UIDTaskType,:#StateTask,:#Geography,:#Device2,:#UIDTaskNumber)")
@@ -26,12 +26,12 @@ public class ExchangeBetweenDevices extends RouteBuilder{
 
         from("amqp:queue:Devices.MessageFrom1C")
                 .process(new ResponseToDevices())
-                .toD("activemq:topic:VirtualTopic.${header.IDDevice}?retroactive=true").to("log:Read msg from 1C");
+                .toD("activemq:topic:${header.IDDevice}?consumer.retroactive=true").to("log:Read msg from 1C");
 
-        from("activemq:topic:VirtualTopic:Devices.MessageFromTablet.OpenCloseShift").process(new CreateOpenCloseShift()).to("log:GetInfoAboutShift.");
+        from("activemq:topic:Devices.MessageFromTablet.OpenCloseShift").process(new CreateOpenCloseShift()).to("log:GetInfoAboutShift.");
 
 
-        from("activemq:topic:VirtualTopic:AnswerPackageFromTablet")
+        from("activemq:topic:AnswerPackageFromTablet")
                 .process(new SavingDataTo1C())
                 .to("amqp:queue:Devices.MessageTo1C");
 //                .streamCaching()
